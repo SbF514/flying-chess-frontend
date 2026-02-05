@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flying Chess Multiplayer</title>
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+      <div class="container">
+        <h1>✈️ Flying Chess</h1>
+        <p class="subtitle">Multiplayer Board Game</p>
+
+        <div class="lobby-forms">
+          <div class="form-section">
+            <h2>Create New Game</h2>
+            <form id="create-game-form">
+              <input type="text" id="player-name" placeholder="Enter your name" required maxlength="20">
+              <select id="max-players">
+                <option value="2">2 Players</option>
+                <option value="3">3 Players</option>
+                <option value="4" selected>4 Players</option>
+              </select>
+              <button type="submit" class="btn btn-primary">Create Game</button>
+            </form>
+          </div>
+
+          <div class="divider">OR</div>
+
+          <div class="form-section">
+            <h2>Join Existing Game</h2>
+            <form id="join-game-form">
+              <input type="text" id="join-player-name" placeholder="Enter your name" required maxlength="20">
+              <input type="text" id="game-id-input" placeholder="Enter Game ID" required>
+              <button type="submit" class="btn btn-secondary">Join Game</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="game-list">
+          <h3>Available Games</h3>
+          <div id="available-games"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Waiting Room Screen -->
+    <div id="waiting-screen" class="screen hidden">
+      <div class="container">
+        <h2>Waiting Room</h2>
+        <p class="game-id-display">Game ID: <strong id="display-game-id"></strong></p>
+
+        <div class="players-list" id="players-list"></div>
+
+        <div class="waiting-controls">
+          <button id="ready-btn" class="btn btn-primary">Ready</button>
+          <button id="copy-game-id-btn" class="btn btn-secondary">Copy Game ID</button>
+          <button id="leave-btn" class="btn btn-danger">Leave</button>
+        </div>
+
+        <div class="waiting-message" id="waiting-message"></div>
+      </div>
+    </div>
+
+    <!-- Game Screen (Tynox Style) -->
+    <div id="game-screen" class="screen hidden">
+      <div class="tyn-game-window">
+        <!-- Main Board -->
+        <div id="game-board" class="tyn-board"></div>
+
+        <!-- Sidebar -->
+        <div class="tyn-sidebar">
+          <div class="tyn-log-area">
+            <textarea id="game-log" readonly></textarea>
+          </div>
+
+          <div class="tyn-dice-section">
+            <span class="tyn-label">色子:</span>
+            <input type="text" id="dice-result-val" value="" readonly>
+          </div>
+
+          <div class="tyn-controls">
+            <button id="roll-dice-btn" class="tyn-btn">掷色子</button>
+            <button id="leave-btn" class="tyn-btn tyn-btn-danger">退出</button>
+          </div>
+
+          <div class="tyn-player-info" id="players-panel">
+            <!-- Simplified player turn indicators -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="screen hidden">
+      <div class="container">
+        <h1 id="winner-message"></h1>
+        <div class="game-over-stats" id="game-over-stats"></div>
+        <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+        <button id="home-btn" class="btn btn-secondary">Back to Lobby</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="game.js?v=5"></script>
+</body>
+
+</html>

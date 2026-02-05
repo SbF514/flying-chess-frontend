@@ -2,7 +2,7 @@
  * Flying Chess - Frontend Game Logic
  */
 
-const API_BASE = 'https://angry-cloths-watch.loca.lt';
+const API_BASE = 'https://eighty-comics-visit.loca.lt';
 const socket = io(API_BASE);
 
 // Game State
